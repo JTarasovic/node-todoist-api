@@ -17,7 +17,7 @@ var Todoist = function (email, pass, cb) {
 				return;
 			}
 			this.user = data;
-			cb(null, this.user);
+			cb(null, resp, this.user);
 			return;
 		}.bind(this));
 	return this;
@@ -48,8 +48,6 @@ Todoist.prototype.todoist = function (ep, params, cb) {
 		case 'uploadfile':
 			break;
 	}
-	console.error(ep);
-	console.error(params);
 	params.token = this.user.token;
 	this._getIt(ep, params, JSONresponse, cb);
 	return;
@@ -58,20 +56,18 @@ Todoist.prototype.todoist = function (ep, params, cb) {
 
 
 Todoist.prototype._getIt = function (endpoint, params, json, cb) {
-	console.error('Trying to get',endpoint,'with',params,'\n\n');
 	request(base + endpoint + '?' + qs.stringify(params), function (err, resp, body) {
-		console.error(arguments);
 		if (err) {
 			cb(err);
 		} else if (json) {
 			try{
-				cb(null, JSON.parse(body));
+				cb(null, resp, JSON.parse(body));
 			} catch (er) {
 				cb(err);
 			}
 		} else {
 			// send it back as object so that way caller always gets objects
-			cb(null, { response: body });
+			cb(null, resp, { response: body });
 		}
 		return;
 	});
