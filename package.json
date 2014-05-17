@@ -1,0 +1,33 @@
+{
+  "name": "node-todoist-api",
+  "version": "0.0.1",
+  "description": "An implementation of the Todoist API for Node",
+  "main": "todoist.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jtarasovic/node-todoist-api"
+  },
+  "keywords": [
+    "todoist",
+    "api"
+  ],
+  "author": {
+    "name": "Jason Tarasovic",
+    "email": "jason@tarasovic.com",
+    "url": "www.tarasovic.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jtarasovic/node-todoist-api/issues"
+  },
+  "homepage": "https://github.com/jtarasovic/node-todoist-api",
+  "dependencies": {
+    "request": "2.34.0"
+  },
+  "engines": {
+    "node": "0.10.28"
+  }
+}
