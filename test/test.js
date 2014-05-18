@@ -20,11 +20,11 @@ vows.describe('Todoist').addBatch({
 			'has a user property': function (topic) {
 				assert.equal(topic.hasOwnProperty('user'), true);
 			},
-			'has a _getIt property': function (topic) {
-				assert.equal(topic.hasOwnProperty('user'), true);
+			'has an api property': function (topic) {
+				assert.equal(topic.hasOwnProperty('api'), true);
 			},
 			'and it\'s a function': function (topic) {
-				assert.instanceOf (topic._getIt, Function);
+				assert.instanceOf (topic.api, Function);
 			}
 		},
 		'when properly connected': {
