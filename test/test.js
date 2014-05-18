@@ -17,14 +17,9 @@ vows.describe('Todoist').addBatch({
 			'returns a Todoist' : function (topic) {
 				assert.instanceOf (topic, Todoist);
 			},
-			'has a user property': function (topic) {
-				assert.equal(topic.hasOwnProperty('user'), true);
-			},
-			'has an api property': function (topic) {
-				assert.equal(topic.hasOwnProperty('api'), true);
-			},
-			'and it\'s a function': function (topic) {
-				assert.instanceOf (topic.api, Function);
+			'has a user property': macros.assertObjectHasProp('user'),
+			'has a request function': function (topic) {
+				assert.instanceOf (topic.request, Function);
 			}
 		},
 		'when properly connected': {
@@ -36,20 +31,18 @@ vows.describe('Todoist').addBatch({
 				assert.isNull(err);
 			},
 			'responds with a 200 OK response': macros.assertStatusCode(200),
-			'responds with a data object': macros.assertDataReceived(),
-			'responds with an API token': macros.assertDataHasProperty('token'),
-			'and it is valid': function (err, resp, data) {
-				assert.equal(data.token === process.env.TODOIST_TOKEN, true);
-			}
+			'responds with a data object': macros.assertDataIsObject(),
+			'responds with an API token': macros.assertDataHasProp('token'),
+			'and it is valid': macros.assertDataHasPropAndVal(
+				'token', process.env.TODOIST_TOKEN)
+		
 		},
 		'when connecting with an invalid email/password': {
 			topic: function () {
 				new Todoist('bademail', 'badpass', this.callback);
 			},
 			'responds with a 200 OK': macros.assertStatusCode(200),
-			'responds with a \'LOGIN_ERROR\'': function (err, resp, data) {
-				assert.deepEqual(data, 'LOGIN_ERROR');
-			}
+			'responds with a \'LOGIN_ERROR\'': macros.assertDataEquals(macros.LOGIN_ERROR)
 		},
 		'when an email or password isn\'t passed': {
 			topic: function () {
