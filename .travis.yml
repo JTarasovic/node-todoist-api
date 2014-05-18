@@ -6,3 +6,7 @@ env:
   - secure: goCFUNQyvAhAyF4LZJ26DIoE+wh693/lqcHcWi9bsxo7w4ZJor3fcTDFC8nuiZqLnPtR5i6dqlsojXZVyMlaSO+ZP+2ZRiwiM6xXow/3KkLsGH41CSmSU7O2po4V2e0m0MklYtXunayzYsiaLKvLQo23P0K/tEKQ2mjo4aR+dfE=
   - secure: bbXAI6KZuwsIGelXCmVx6hH8nsyDtlFuu9vvc/WB0G51Mo4wEC5P1CzJ6VrtBrFs2CbIFJtk2MN/Ipozz6Aou3plT4vNPkWEaU38/I+XkU3uqG0pqZ05zxmCYVs8y7vrb9Yz2K+WWq1UpeTAm0MdeQoqXwlFHu9AH8y9xD00jas=
   - secure: jF3/rrwdOK3K7wurs9nQ50EFjQrI9DvQnpFfmEFdIwj9Lofoagi0KdhbWglTrj64xEWiwTnec9oYWaKKRA9C/3YQwv145nwFsbXhCQosOCrWnHLvz1AgD48JAC9Gr+/ni0YOxd8IMH4IOv1aZAWjo1oXSmbKU+aD8mcFKwru+6w=
+notifications:
+  email:
+    on_success: change
+    on_failure: change
