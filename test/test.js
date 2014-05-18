@@ -10,7 +10,7 @@ var Todoist = require('../todoist'),
 vows.describe('Todoist').addBatch({
 	'The Todoist API': {
 		'when instantiated': {
-			topic: new Todoist(process.env.TODOIST_EMAIL, process.env.TODOIST_PASS, function (err,resp,body) {
+			topic: new Todoist(process.env.TODOIST_EMAIL, process.env.TODOIST_PASS, function (err,resp,data) {
 				return;
 			}),
 
@@ -38,22 +38,24 @@ vows.describe('Todoist').addBatch({
 			'responds with a 200 OK response': macros.assertStatusCode(200),
 			'responds with a data object': macros.assertDataReceived(),
 			'responds with an API token': macros.assertDataHasProperty('token'),
-			'and it is valid': macros.assertSpecificDataReceived('token', process.env.TODOIST_TOKEN)
+			'and it is valid': function (err, resp, data) {
+				assert.equal(data.token === process.env.TODOIST_TOKEN, true);
+			}
 		},
 		'when connecting with an invalid email/password': {
 			topic: function () {
 				new Todoist('bademail', 'badpass', this.callback);
 			},
 			'responds with a 200 OK': macros.assertStatusCode(200),
-			'responds with a \'LOGIN_ERROR\'': function (err, resp, body) {
-				assert.deepEqual(body, 'LOGIN_ERROR');
+			'responds with a \'LOGIN_ERROR\'': function (err, resp, data) {
+				assert.deepEqual(data, 'LOGIN_ERROR');
 			}
 		},
 		'when an email or password isn\'t passed': {
 			topic: function () {
 				new Todoist('', '', this.callback);
 			},
-			'errors out': function (err, resp, body){
+			'errors out': function (err, resp, data){
 				assert.deepEqual(err, 'Must call Todoist with an email and password');
 			}
 		}
