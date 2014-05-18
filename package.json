@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/jtarasovic/node-todoist-api",
   "dependencies": {
+    "cheerio": "^0.16.0",
     "request": "2.34.0"
   },
   "devDependencies": {
