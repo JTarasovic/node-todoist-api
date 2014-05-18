@@ -4,7 +4,7 @@
   "description": "An implementation of the Todoist API for Node",
   "main": "todoist.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vows --spec"
   },
   "repository": {
     "type": "git",
