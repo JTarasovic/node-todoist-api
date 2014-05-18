@@ -5,13 +5,13 @@ var version = require('./package.json').version,
 
 
 var Todoist = function (email, pass, cb) {
-	if (email === undefined || pass === undefined) {
+	if (!email || !pass ) {
 		cb('Must call Todoist with an email and password');
 		return;
 	}
 	this.user = {};
 	this._getIt('login', {email: email, password: pass}, true,
-		function (err, data) {
+		function (err, resp, data) {
 			if (err) {
 				cb(err);
 				return;
@@ -25,7 +25,7 @@ var Todoist = function (email, pass, cb) {
 
 Todoist.VERSION = version;
 
-Todoist.prototype.todoist = function (ep, params, cb) {
+Todoist.prototype.api = function (ep, params, cb) {
 	ep = ep.toLowerCase();
 	var JSONresponse = true;
 	
