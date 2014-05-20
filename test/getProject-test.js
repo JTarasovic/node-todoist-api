@@ -41,39 +41,39 @@ vows.describe('/API/getProject').addBatch({
 		},
 		'when queried with an invalid token': {
 			'and a valid project id': {
-				topic: request({token: '1234987124ljhsf871243asdfa', project_id: '122980030' }),
+				topic: request({token: macros.BAD_TOKEN, project_id: '122980030' }),
 				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
 				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 
 			},
 			'and an invalid project ID': {
-				topic: request({token: '1234987124ljhsf871243asdfa', project_id: '1212487234' }),
+				topic: request({token: macros.BAD_TOKEN, project_id: '1212487234' }),
 				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
 				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 			},
 			'and a malformed project_id': {
-				topic: request({project_id: 'badid'}),
-				'returns an HTTP 400 Bad Request response': macros.assertStatusCode(400),
-				'returns "Token not correct!"': macros.assertDataEquals(macros.EIPI),
+				topic: request({token: macros.BAD_TOKEN, project_id: 'badid'}),
+				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
+				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 				
 			}
 		},
 		'when queried with a null token' :{
 			'and a valid project id': {
-				topic: request({token: '1234987124ljhsf871243asdfa', project_id: '122980030' }),
+				topic: request({token: null, project_id: '122980030' }),
 				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
 				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 
 			},
 			'and an invalid project ID': {
-				topic: request({token: '1234987124ljhsf871243asdfa', project_id: '1212487234' }),
+				topic: request({token: null, project_id: '1212487234' }),
 				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
 				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 			},
 			'and a malformed project_id': {
-				topic: request({project_id: 'badid'}),
-				'returns an HTTP 400 Bad Request response': macros.assertStatusCode(400),
-				'returns "Token not correct!"': macros.assertDataEquals(macros.EIPI),
+				topic: request({token: null, project_id: 'badid'}),
+				'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
+				'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 				
 			}
 		}
