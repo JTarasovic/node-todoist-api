@@ -26,12 +26,15 @@ vows.describe('/API/getProjects').addBatch({
 			}
 		},
 		'when queried with an invalid token': {
-			topic: request({token: 'badtoken'}),
-			'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401)
+			topic: request({token: macros.BAD_TOKEN}),
+			'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
+			'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
+
 		},
 		'when queried with a null token' :{
 			topic: request({token: null}),
-			'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401)
+			'returns an HTTP 401 Unauthorized response': macros.assertStatusCode(401),
+			'returns "Token not correct!"': macros.assertDataEquals(macros.TNC),
 		}
 	}
 }).export(module);

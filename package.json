@@ -26,11 +26,11 @@
   "homepage": "https://github.com/jtarasovic/node-todoist-api",
   "dependencies": {
     "cheerio": "^0.16.0",
-    "request": "2.34.0"
+    "request": "2.34.0"    
   },
   "devDependencies": {
-    "vows": "0.7.0",
-    "assert": "1.1.1"
+    "mocha": "^1.19.0",
+    "should": "^3.3.2"
   },
   "engines": {
     "node": "0.10.28"

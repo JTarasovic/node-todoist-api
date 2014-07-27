@@ -59,7 +59,8 @@ Todoist.prototype.request = function (ep, params, cb) {
 
 
 Todoist.prototype._getIt = function (endpoint, params, json, cb) {
-	request(base + endpoint + '?' + qs.stringify(params), function (err, resp, body) {
+	var path = base + endpoint + '?' + qs.stringify(params);
+	request(path, function (err, resp, body) {
 		if (err) {
 			cb(err);
 		} else if (json) {
