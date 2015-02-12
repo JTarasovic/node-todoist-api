@@ -3,8 +3,8 @@ var jsd2md = require('gulp-jsdoc-to-markdown');
 var replace = require('gulp-just-replace');
 var rename = require("gulp-rename");
 var gutil = require("gulp-util");
-var me = require('./package.json');
 var del = require('del');
+var me = require('./package.json');
 
 console.log(me.name);
 
@@ -38,7 +38,5 @@ gulp.task('doc-build', ['replace'], function(){
 gulp.task('docs',['doc-build'], function(cb){
   return del(['readme.hbs'], cb);
 })
-
-
 
 gulp.task('default',['docs']);
