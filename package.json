@@ -1,10 +1,10 @@
 {
-  "name": "node-todoist-api",
+  "name": "node-todoist",
   "version": "0.0.1",
   "description": "An implementation of the Todoist API for Node",
   "main": "todoist.js",
   "scripts": {
-    "test": "vows --spec"
+    "test": "echo 0"
   },
   "repository": {
     "type": "git",
@@ -24,15 +24,20 @@
     "url": "https://github.com/jtarasovic/node-todoist-api/issues"
   },
   "homepage": "https://github.com/jtarasovic/node-todoist-api",
-  "dependencies": {
-    "cheerio": "^0.16.0",
-    "request": "2.34.0"    
-  },
-  "devDependencies": {
-    "mocha": "^1.19.0",
-    "should": "^3.3.2"
-  },
   "engines": {
     "node": "0.10.28"
+  },
+  "dependencies": {
+    "lodash": "^3.1.0",
+    "q": "^1.1.2",
+    "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-jsdoc-to-markdown": "^0.1.6",
+    "gulp-just-replace": "^1.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-util": "^3.0.3"
   }
 }
