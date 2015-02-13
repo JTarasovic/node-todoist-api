@@ -107,7 +107,6 @@ module.exports = ( function () {
 		var p = (user && user.token)
 			? _.extend({}, params, {token: user.token})
 			: params;
-		console.log(p);
 		return base + ep.toLowerCase() + '?' + qs.stringify(p);
 	};
 

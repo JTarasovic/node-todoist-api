@@ -35,6 +35,8 @@
   "devDependencies": {
     "del": "^1.1.1",
     "gulp": "^3.8.11",
+    "gulp-concat": "^2.4.3",
+    "gulp-contribs": "0.0.2",
     "gulp-jsdoc-to-markdown": "^0.1.6",
     "gulp-just-replace": "^1.0.2",
     "gulp-rename": "^1.2.0",

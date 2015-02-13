@@ -2,15 +2,16 @@ var gulp = require('gulp');
 var jsd2md = require('gulp-jsdoc-to-markdown');
 var replace = require('gulp-just-replace');
 var rename = require("gulp-rename");
+var concat = require('gulp-concat');
 var gutil = require("gulp-util");
 var del = require('del');
 var me = require('./package.json');
-
-console.log(me.name);
+var contribs = require('gulp-contribs');
 
 gulp.task('replace', function(){
-  return gulp.src("readme_template.hbs").
-  pipe(replace([
+  return gulp.src(["readme_template.hbs","LICENSE"])
+  .pipe(concat('readme.hbs'))
+  .pipe(replace([
     {
       search: '%%NAME%%',
       replacement: me.name
@@ -20,7 +21,8 @@ gulp.task('replace', function(){
       replacement: me.description
     }
   ]))
-  .pipe(rename('readme.hbs'))
+  .pipe(contribs())
+  // .pipe(rename('readme.hbs'))
   .pipe(gulp.dest('./'))
 })
 
