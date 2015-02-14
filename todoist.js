@@ -96,7 +96,7 @@ module.exports = ( function () {
 	 * 		return;
 	 * 	}
 	 * 	console.log(data);
-	 * 	```
+	 *```
 	 */
 	function request(endpoint, params, cb) {
 		return r(getPath(endpoint, params))
