@@ -28,6 +28,7 @@
     "node": "0.10.28"
   },
   "dependencies": {
+    "json-promise": "^1.1.8",
     "lodash": "^3.1.0",
     "q": "^1.1.2",
     "request": "^2.53.0"
