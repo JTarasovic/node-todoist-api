@@ -11,6 +11,7 @@
 
 var version = require('./package.json').version,
 				req = require('request'),
+				json= require('json-promise'),
 				qs 	= require('querystring'),
 				q		= require('q'),
 				_		= require('lodash'),
@@ -111,8 +112,10 @@ module.exports = ( function () {
 	};
 
 	function format(args){
-		return args[1].indexOf('{') === 0
-			? JSON.parse(args[1])
-			: args[1];
+		return json.parse(args[1])
+			.then(_.identity)
+			.catch(function(){
+				return args[1];
+			})
 	}
 }());
