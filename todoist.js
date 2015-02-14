@@ -111,6 +111,8 @@ module.exports = ( function () {
 	};
 
 	function format(args){
-		return JSON.parse(args[1]);
+		return args[1].indexOf('{') === 0
+			? JSON.parse(args[1])
+			: args[1];
 	}
 }());
