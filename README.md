@@ -85,10 +85,16 @@ todoist.request('addProject', my_params), function(err,data){
 	console.log(data);
 ```
 
+## Debug
+node-todoist uses [`debug`](https://github.com/visionmedia/debug) for debugging.
+Simply include `todoist` in the list of modules in the `DEBUG` environment variable.
+
+`export DEBUG=todoist` or `DEBUG=todoist node my_app.js`
+
 ## Contributors
 
 ```
-    52	Jason Tarasovic
+    57	Jason Tarasovic
 ```
 
 ## License
