@@ -88,7 +88,7 @@ todoist.request('addProject', my_params), function(err,data){
 ## Contributors
 
 ```
-    47	Jason Tarasovic
+    50	Jason Tarasovic
 ```
 
 ## License

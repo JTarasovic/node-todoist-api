@@ -30,8 +30,6 @@ module.exports = (function () {
 
 	function getPath(ep, params) {
 		var p = user && user.token ? assign({}, params, { token: user.token }) : params;
-
-
 		return "https://todoist.com/API/" + ep.toLowerCase() + "?" + qs.stringify(p);
 	};
 
