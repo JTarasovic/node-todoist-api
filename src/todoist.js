@@ -12,7 +12,7 @@
 
 const version = require('./package.json').version,
 			 assign = require('object-assign'),
-			 bunyan = require('bunyan'),
+			  debug = require('debug')('todoist'),
 					req = require('request'),
 					qs 	= require('querystring'),
 					q		= require('q');
@@ -27,9 +27,6 @@ module.exports = ( function () {
 	let self = this;
 	let user;		// reference for the user object, including token
 	const r = q.nbind(req);
-	const debug = process.env.TODOIST_DEBUG || false;
-	let logger = bunyan.createLogger({name: 'todoist'});
-	logger.level(debug ? 'debug' : 'fatal');
 	return ret;
 
 	/**
@@ -59,11 +56,11 @@ module.exports = ( function () {
 	* ```
 	*/
 	function login(params,cb) {
-		log('login', params);
+		debug('login', params);
 		return request('login',params)
 			.then(function(data){
 					user = data;
-					log('user', user);
+					debug('user', user);
 					return user;
 				})
 			.nodeify(cb);
@@ -104,7 +101,7 @@ module.exports = ( function () {
 	 *```
 	 */
 	function request(endpoint, params, cb) {
-		log('request', endpoint, params);
+		debug('request', endpoint, params);
 		return r(getPath(endpoint, params))
 			.then(format)
 			.nodeify(cb);
@@ -115,12 +112,12 @@ module.exports = ( function () {
 			? assign({}, params, {token: user.token})
 			: params;
 		var ret = `https://todoist.com/API/${ep.toLowerCase()}?${qs.stringify(p)}`;
-		log('getPath',ret);
+		debug('getPath',ret);
 		return ret;
 	};
 
 	function format(args){
-		log('format',args[1]);
+		debug('format',args[1]);
 		var def = q.defer();
 		try{
 			def.resolve(JSON.parse(args[1]));
@@ -128,11 +125,6 @@ module.exports = ( function () {
 			def.resolve(args[1]);
 		}
 		return def.promise;
-	}
-
-	function log(msg,...args){
-			if(debug) {logger.debug(msg,args)};
-			return;
 	}
 
 }());
