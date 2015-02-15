@@ -10,12 +10,12 @@
  *
  */
 
-const version = require('./package.json').version,
-			 assign = require('object-assign'),
-			  debug = require('debug')('todoist'),
-					req = require('request'),
-					qs 	= require('querystring'),
-					q		= require('q');
+const version	= require('./package.json').version,
+			assign	= require('object-assign'),
+			debug		= require('debug')('todoist'),
+			req			= require('request'),
+			qs 			= require('querystring'),
+			Q				= require('q');
 
 module.exports = ( function () {
 	let ret = {
@@ -26,7 +26,7 @@ module.exports = ( function () {
 
 	let self = this;
 	let user;		// reference for the user object, including token
-	const r = q.nbind(req);
+	const r = Q.nbind(req);
 	return ret;
 
 	/**
@@ -105,20 +105,20 @@ module.exports = ( function () {
 		return r(getPath(endpoint, params))
 			.then(format)
 			.nodeify(cb);
-	};
+	}
 
 	function getPath(ep, params) {
-		var p = (user && user.token)
+		let p = (user && user.token)
 			? assign({}, params, {token: user.token})
 			: params;
-		var ret = `https://todoist.com/API/${ep.toLowerCase()}?${qs.stringify(p)}`;
+		let ret = `https://todoist.com/API/${ep.toLowerCase()}?${qs.stringify(p)}`;
 		debug('getPath',ret);
 		return ret;
-	};
+	}
 
 	function format(args){
 		debug('format',args[1]);
-		var def = q.defer();
+		let def = Q.defer();
 		try{
 			def.resolve(JSON.parse(args[1]));
 		} catch(e){
