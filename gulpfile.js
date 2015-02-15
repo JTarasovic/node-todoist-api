@@ -15,11 +15,11 @@ gulp.task('replace', function(){
   .pipe(concat('readme.hbs'))
   .pipe(replace([
     {
-      search: '%%NAME%%',
+      search: /%%NAME%%/g,
       replacement: me.name
     },
     {
-      search: '%%DESCRIPTION%%',
+      search: /%%DESCRIPTION%%/g,
       replacement: me.description
     }
   ]))
