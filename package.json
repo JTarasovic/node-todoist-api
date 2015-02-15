@@ -1,6 +1,6 @@
 {
   "name": "node-todoist",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "An implementation of the Todoist API for Node",
   "main": "todoist.js",
   "scripts": {
