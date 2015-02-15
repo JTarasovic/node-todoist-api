@@ -107,10 +107,7 @@ module.exports = ( function () {
 		var p = (user && user.token)
 			? assign({}, params, {token: user.token})
 			: params;
-		// Object.assign({}, params, {token: user.token})
-		// console.log(`https://todoist.com/API/${ep.toLowerCase()}?${qs.stringify(p)}`);
 		return `https://todoist.com/API/${ep.toLowerCase()}?${qs.stringify(p)}`;
-		// return base + ep.toLowerCase() + '?' + qs.stringify(p);
 	};
 
 	function format(args){
