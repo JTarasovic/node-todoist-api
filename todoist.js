@@ -5,7 +5,7 @@ var version = require("./package.json").version,
     debug = require("debug")("todoist"),
     req = require("request"),
     qs = require("querystring"),
-    q = require("q");
+    Q = require("q");
 
 module.exports = (function () {
 	var ret = {
@@ -15,7 +15,7 @@ module.exports = (function () {
 
 	var self = this;
 	var user = undefined;
-	var r = q.nbind(req);
+	var r = Q.nbind(req);
 	return ret;
 
 	function login(params, cb) {
@@ -30,18 +30,18 @@ module.exports = (function () {
 	function request(endpoint, params, cb) {
 		debug("request", endpoint, params);
 		return r(getPath(endpoint, params)).then(format).nodeify(cb);
-	};
+	}
 
 	function getPath(ep, params) {
 		var p = user && user.token ? assign({}, params, { token: user.token }) : params;
 		var ret = "https://todoist.com/API/" + ep.toLowerCase() + "?" + qs.stringify(p);
 		debug("getPath", ret);
 		return ret;
-	};
+	}
 
 	function format(args) {
 		debug("format", args[1]);
-		var def = q.defer();
+		var def = Q.defer();
 		try {
 			def.resolve(JSON.parse(args[1]));
 		} catch (e) {
