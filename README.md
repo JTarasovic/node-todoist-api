@@ -1,3 +1,6 @@
+**DEPRECATED**
+This targeted a much older version of the api. It has since changed drastically. The last time I looked at the API docs, they were non-sensical and I no longer use Todoist so...
+
 **node-todoist**  [![Build Status](http://img.shields.io/travis/JTarasovic/node-todoist-api.svg?style=flat)](https://travis-ci.org/JTarasovic/node-todoist-api)
 ================
 
